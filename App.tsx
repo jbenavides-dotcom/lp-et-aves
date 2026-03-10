@@ -152,7 +152,7 @@ function ExperienceSection() {
             Una experiencia para conectar con la naturaleza
           </h2>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Nuestros recorridos comienzan temprano en la mañana, cuando el bosque despierta y las aves están más activas.
+            Nuestros recorridos de avistamiento comienzan temprano en la mañana, cuando el bosque despierta y las aves están más activas. Durante la caminata, explorarás senderos entre cafetales y bosque nativo mientras aprendes sobre las especies, su comportamiento y el papel fundamental que cumplen en el ecosistema.
           </p>
         </div>
 
