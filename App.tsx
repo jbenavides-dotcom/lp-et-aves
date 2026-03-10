@@ -353,6 +353,9 @@ function MoreExperiencesSection() {
           >
             Más experiencias en la naturaleza
           </h2>
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+            Durante tu visita también puedes disfrutar de otras experiencias que conectan con el territorio:
+          </p>
         </div>
 
         {/* Cards */}
