@@ -298,7 +298,7 @@ function ConservationSection() {
               Conservar el bosque también protege las aves
             </h2>
             <p className="text-white/70 text-base leading-relaxed mb-8">
-              En La Palma &amp; El Tucán Hotel, el avistamiento de aves está profundamente conectado con nuestro compromiso con la sostenibilidad y la agricultura regenerativa.
+              En La Palma &amp; El Tucán Hotel, el avistamiento de aves está profundamente conectado con nuestro compromiso con la sostenibilidad y la agricultura regenerativa. Nuestro proyecto cafetero protege el bosque, promueve la biodiversidad y crea corredores ecológicos que permiten a muchas especies prosperar en este ecosistema.
             </p>
 
             <ul className="space-y-4">
