@@ -96,7 +96,7 @@ function WhySection() {
             Un santuario de biodiversidad
           </h2>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Nuestro hotel está ubicado en un ecosistema de bosque de niebla andino, uno de los hábitats con mayor biodiversidad del planeta.
+            Nuestro hotel está ubicado en un ecosistema de bosque de niebla andino, uno de los hábitats con mayor biodiversidad del planeta. La combinación de bosque nativo, cafetales y corredores ecológicos crea condiciones ideales para el avistamiento de aves durante todo el año.
           </p>
         </div>
 
