@@ -35,6 +35,8 @@ export const ASSETS = {
 // ─── Contact & CTAs ───────────────────────────────────────────────────────────
 export const WHATSAPP_URL =
   'https://wa.me/573189565617?text=Hola%2C%20quiero%20información%20sobre%20avistamiento%20de%20aves';
+export const CLOUDBEDS_URL =
+  'https://hotels.cloudbeds.com/en/reservation/yB0fEt';
 export const EMAIL = 'reservations@lapalmayeltucan.com';
 
 // ─── Navigation ───────────────────────────────────────────────────────────────

@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
-import { NAV_LINKS, WHATSAPP_URL } from '../constants';
-import { useAnalytics } from '../hooks/useAnalytics';
+import { NAV_LINKS, CLOUDBEDS_URL } from '../constants';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const { trackWhatsAppClick } = useAnalytics();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -72,13 +70,12 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href={WHATSAPP_URL}
+            href={CLOUDBEDS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackWhatsAppClick('navbar')}
             className="bg-brand-pink text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-brand-pink/90 transition-all duration-200 hover:shadow-lg hover:shadow-brand-pink/30 hover:-translate-y-0.5"
           >
-            Consultar
+            Reservar Ahora
           </a>
         </nav>
 
@@ -122,16 +119,13 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href={WHATSAPP_URL}
+            href={CLOUDBEDS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => {
-              trackWhatsAppClick('navbar_mobile');
-              setMenuOpen(false);
-            }}
+            onClick={() => setMenuOpen(false)}
             className="bg-brand-pink text-white px-8 py-3.5 rounded-full text-lg font-semibold hover:bg-brand-pink/90 transition-all duration-200 mt-4"
           >
-            Consultar disponibilidad
+            Reservar Ahora
           </a>
         </nav>
       </div>

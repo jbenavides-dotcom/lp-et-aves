@@ -18,6 +18,7 @@ import {
   COMPLEMENTARY_EXPERIENCES,
   FAQ_ITEMS,
   WHATSAPP_URL,
+  CLOUDBEDS_URL,
   EMAIL,
   NAV_LINKS,
 } from './constants';
@@ -727,15 +728,14 @@ function CtaFinal() {
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
           <a
-            href={WHATSAPP_URL}
+            href={CLOUDBEDS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackWhatsAppClick('cta_final')}
             className="w-full sm:w-auto bg-brand-pink text-white px-10 py-5 rounded-full text-lg font-bold hover:bg-brand-pink/90 transition-all duration-200 hover:shadow-2xl hover:shadow-brand-pink/50 hover:-translate-y-1"
           >
-            Reservar por WhatsApp
+            Reservar Ahora
           </a>
           <a
             href={`mailto:${EMAIL}`}
@@ -745,6 +745,15 @@ function CtaFinal() {
             Escribir por correo
           </a>
         </div>
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick('cta_final')}
+          className="text-white/60 hover:text-white text-sm underline underline-offset-4 transition-colors duration-200"
+        >
+          ¿Preguntas? Escríbenos por WhatsApp
+        </a>
 
         {/* Trust note */}
         <p className="text-white/50 text-sm">

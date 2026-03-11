@@ -1,6 +1,5 @@
 import { ChevronDown } from 'lucide-react';
-import { ASSETS, WHATSAPP_URL } from '../constants';
-import { useAnalytics } from '../hooks/useAnalytics';
+import { ASSETS, CLOUDBEDS_URL } from '../constants';
 
 const TRUST_CHIPS = [
   'Bosque de niebla',
@@ -10,8 +9,6 @@ const TRUST_CHIPS = [
 ];
 
 export default function Hero() {
-  const { trackWhatsAppClick } = useAnalytics();
-
   const handleScrollDown = () => {
     const next = document.querySelector('#por-que');
     if (next) next.scrollIntoView({ behavior: 'smooth' });
@@ -87,13 +84,12 @@ export default function Hero() {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href={WHATSAPP_URL}
+            href={CLOUDBEDS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackWhatsAppClick('hero')}
             className="w-full sm:w-auto bg-brand-pink text-white px-8 py-4 rounded-full text-base font-bold hover:bg-brand-pink/90 transition-all duration-200 hover:shadow-xl hover:shadow-brand-pink/40 hover:-translate-y-1 text-center"
           >
-            Consultar disponibilidad
+            Reservar Ahora
           </a>
           <a
             href="#especies"
