@@ -164,12 +164,12 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: '¿Qué debo llevar?',
     answer:
-      'Ropa cómoda y oscura, zapatos cerrados, binoculares (tenemos algunos disponibles), cámara fotográfica y repelente.',
+      'Ropa cómoda, zapatos cerrados, repelente si lo consideras y la mejor disposición para un recorrido contemplativo',
   },
   {
     question: '¿A qué hora es el avistamiento?',
     answer:
-      'Comenzamos al amanecer (5:30-6:00 AM) cuando las aves están más activas.',
+      'Podemos empezar entre 6:00am y 6:30am, cuando las aves están más activas',
   },
   {
     question: '¿Cuánto dura el recorrido?',
@@ -179,7 +179,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: '¿Está incluido en la estadía?',
     answer:
-      'El recorrido básico por los senderos de la finca está incluido. Tours especializados con guía experto tienen costo adicional.',
+      'En La Palma y el Tucán Hotel tu estadía será un escenario de avistamiento de aves permanente. El Tour con guía especializado tiene costo adicional.',
   },
   {
     question: '¿Cuál es la mejor época?',

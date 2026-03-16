@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Trees, Bird, Map, Users, Navigation, Sunrise, Footprints, Search, Camera, Shield, Heart, Sprout, Globe, MapPin, Clock } from 'lucide-react';
+import { ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Trees, Bird, Map, Users, Navigation, Sunrise, Footprints, Search, Camera, Shield, Heart, Sprout, Globe, MapPin } from 'lucide-react';
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -7,6 +7,7 @@ import Logo from './components/Logo';
 
 import { useScrollReveal } from './hooks/useScrollReveal';
 import { useAnalytics } from './hooks/useAnalytics';
+import { useI18n } from './i18n';
 
 import {
   ASSETS,
@@ -16,7 +17,6 @@ import {
   BIRD_SPECIES,
   CONSERVATION_POINTS,
   COMPLEMENTARY_EXPERIENCES,
-  FAQ_ITEMS,
   WHATSAPP_URL,
   CLOUDBEDS_URL,
   EMAIL,
@@ -26,6 +26,7 @@ import {
 // ─── WhatsApp floating button ─────────────────────────────────────────────────
 function FloatingCTA() {
   const { trackWhatsAppClick } = useAnalytics();
+  const { t } = useI18n();
   return (
     <a
       href={WHATSAPP_URL}
@@ -37,7 +38,7 @@ function FloatingCTA() {
     >
       {/* Tooltip */}
       <span className="hidden sm:block bg-white text-brand-dark text-sm font-medium px-4 py-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-        Consulta sobre avistamiento 🦜
+        {t('floating.tooltip')}
       </span>
       <span className="flex items-center justify-center w-14 h-14 rounded-full bg-brand-pink text-white shadow-lg hover:bg-brand-pink/90 hover:shadow-xl hover:shadow-brand-pink/40 hover:-translate-y-1 transition-all duration-300">
         <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -50,19 +51,20 @@ function FloatingCTA() {
 
 // ─── Stats Bar ────────────────────────────────────────────────────────────────
 function StatsBar() {
+  const { t } = useI18n();
   return (
     <section className="bg-brand-dark py-10" aria-label="Estadísticas clave">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {STATS.map((stat) => (
+          {STATS.map((stat, i) => (
             <div key={stat.label} className="text-center">
               <div className="font-serif text-3xl sm:text-4xl text-brand-gold mb-1">
                 {stat.value}
               </div>
               <div className="text-white font-semibold text-sm sm:text-base mb-0.5">
-                {stat.label}
+                {t(`stats.${i}.label`)}
               </div>
-              <div className="text-white/50 text-xs sm:text-sm">{stat.sublabel}</div>
+              <div className="text-white/50 text-xs sm:text-sm">{t(`stats.${i}.sublabel`)}</div>
             </div>
           ))}
         </div>
@@ -74,6 +76,7 @@ function StatsBar() {
 // ─── Why Section ──────────────────────────────────────────────────────────────
 function WhySection() {
   const { ref, isVisible } = useScrollReveal();
+  const { t } = useI18n();
 
   const ICONS = [Trees, Bird, Bird, Map, Users, Navigation];
 
@@ -88,16 +91,16 @@ function WhySection() {
         {/* Header */}
         <div className="text-center mb-14">
           <p className="text-brand-green font-semibold tracking-widest uppercase text-sm mb-3">
-            ¿Por qué hacer avistamiento aquí?
+            {t('why.subtitle')}
           </p>
           <h2
             id="porque-titulo"
             className="font-serif text-3xl sm:text-4xl text-brand-dark mb-4"
           >
-            Un santuario de biodiversidad
+            {t('why.title')}
           </h2>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Nuestro hotel está ubicado en un ecosistema de bosque de niebla andino, uno de los hábitats con mayor biodiversidad del planeta. La combinación de bosque nativo, cafetales y corredores ecológicos crea condiciones ideales para el avistamiento de aves durante todo el año.
+            {t('why.description')}
           </p>
         </div>
 
@@ -115,9 +118,9 @@ function WhySection() {
                   <Icon className="w-6 h-6 text-brand-green" aria-hidden="true" />
                 </div>
                 <h3 className="font-serif text-lg text-brand-dark mb-2 group-hover:text-brand-green transition-colors duration-200">
-                  {bullet.title}
+                  {t(`why.${i}.title`)}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{bullet.description}</p>
+                <p className="text-gray-500 text-sm leading-relaxed">{t(`why.${i}.desc`)}</p>
               </article>
             );
           })}
@@ -130,6 +133,7 @@ function WhySection() {
 // ─── Experience Section ───────────────────────────────────────────────────────
 function ExperienceSection() {
   const { ref, isVisible } = useScrollReveal();
+  const { t } = useI18n();
 
   const ICONS = [Sunrise, Footprints, Search, Camera];
 
@@ -144,16 +148,16 @@ function ExperienceSection() {
         {/* Header */}
         <div className="text-center mb-14">
           <p className="text-brand-green font-semibold tracking-widest uppercase text-sm mb-3">
-            La experiencia
+            {t('exp.subtitle')}
           </p>
           <h2
             id="experiencia-titulo"
             className="font-serif text-3xl sm:text-4xl text-brand-dark mb-4"
           >
-            Una experiencia para conectar con la naturaleza
+            {t('exp.title')}
           </h2>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Nuestros recorridos de avistamiento comienzan temprano en la mañana, cuando el bosque despierta y las aves están más activas. Durante la caminata, explorarás senderos entre cafetales y bosque nativo mientras aprendes sobre las especies, su comportamiento y el papel fundamental que cumplen en el ecosistema.
+            {t('exp.intro')}
           </p>
         </div>
 
@@ -171,31 +175,31 @@ function ExperienceSection() {
                   <Icon className="w-7 h-7 text-brand-green" aria-hidden="true" />
                 </div>
                 <div className="text-brand-green font-bold text-sm mb-2 tracking-widest">{step.step}</div>
-                <h3 className="font-serif text-lg text-brand-dark mb-2">{step.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{step.description}</p>
+                <h3 className="font-serif text-lg text-brand-dark mb-2">{t(`exp.step.${i}.title`)}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{t(`exp.step.${i}.desc`)}</p>
               </div>
             );
           })}
         </div>
 
         {/* Guide image banner */}
-        <div className="mt-14 rounded-3xl overflow-hidden shadow-xl relative">
+        <div className="mt-14 rounded-3xl overflow-hidden shadow-xl relative h-80 sm:h-96">
           <img
             src={ASSETS.GUIA}
             alt="Guía de avistamiento de aves con binoculares"
-            className="w-full h-64 sm:h-80 object-cover"
+            className="absolute inset-0 w-full h-full object-cover object-center"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/90 to-transparent flex items-center">
-            <div className="p-8 max-w-lg">
+          <div className="absolute inset-0 bg-brand-dark/60 flex items-center justify-center">
+            <div className="p-8 max-w-lg text-center">
               <p className="text-brand-gold font-semibold text-sm uppercase tracking-widest mb-3">
-                Guías locales expertos
+                {t('exp.guide.label')}
               </p>
-              <p className="font-serif text-white text-xl leading-snug mb-3">
-                Nuestros guías conocen cada sendero, cada canto y cada especie del bosque.
+              <p className="font-serif text-white text-xl sm:text-2xl leading-snug mb-3">
+                {t('exp.guide.text')}
               </p>
               <p className="text-white/80 text-sm leading-relaxed italic">
-                Una experiencia de avistamiento acompañada por quienes mejor conocen este ecosistema.
+                {t('exp.guide.subtext')}
               </p>
             </div>
           </div>
@@ -208,6 +212,7 @@ function ExperienceSection() {
 // ─── Species Gallery ──────────────────────────────────────────────────────────
 function SpeciesGallery() {
   const { ref, isVisible } = useScrollReveal();
+  const { t } = useI18n();
 
   return (
     <section
@@ -220,16 +225,16 @@ function SpeciesGallery() {
         {/* Header */}
         <div className="text-center mb-14">
           <p className="text-brand-green font-semibold tracking-widest uppercase text-sm mb-3">
-            Especies que podrás observar
+            {t('species.subtitle')}
           </p>
           <h2
             id="especies-titulo"
             className="font-serif text-3xl sm:text-4xl text-brand-dark mb-4"
           >
-            Aves del bosque de niebla
+            {t('species.title')}
           </h2>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Nuestro entorno alberga una gran diversidad de especies. Estas son algunas de las que podrás observar durante tu recorrido.
+            {t('species.description')}
           </p>
         </div>
 
@@ -264,7 +269,7 @@ function SpeciesGallery() {
         {/* Additional species text */}
         <div className="mt-10 text-center">
           <p className="text-gray-500 text-sm">
-            También podrás observar: <span className="text-brand-dark font-medium">tangaras multicolores, colibríes de montaña, atrapamoscas, búhos, aves nocturnas, halcones y aves rapaces</span>, entre muchas otras.
+            {t('species.also')} <span className="text-brand-dark font-medium">{t('species.also.list')}</span>{t('species.also.suffix')}
           </p>
         </div>
       </div>
@@ -275,6 +280,7 @@ function SpeciesGallery() {
 // ─── Conservation Section ─────────────────────────────────────────────────────
 function ConservationSection() {
   const { ref, isVisible } = useScrollReveal();
+  const { t } = useI18n();
 
   const ICONS = [Sprout, Shield, Heart, Users, Globe];
 
@@ -290,27 +296,27 @@ function ConservationSection() {
           {/* Text */}
           <div>
             <p className="text-brand-gold font-semibold tracking-widest uppercase text-sm mb-3">
-              Conservación y biodiversidad
+              {t('conservation.subtitle')}
             </p>
             <h2
               id="conservacion-titulo"
               className="font-serif text-3xl sm:text-4xl text-white mb-5"
             >
-              Conservar el bosque también protege las aves
+              {t('conservation.h2')}
             </h2>
             <p className="text-white/70 text-base leading-relaxed mb-8">
-              En La Palma &amp; El Tucán Hotel, el avistamiento de aves está profundamente conectado con nuestro compromiso con la sostenibilidad y la agricultura regenerativa. Nuestro proyecto cafetero protege el bosque, promueve la biodiversidad y crea corredores ecológicos que permiten a muchas especies prosperar en este ecosistema.
+              {t('conservation.desc')}
             </p>
 
             <ul className="space-y-4">
-              {CONSERVATION_POINTS.map((point, i) => {
+              {CONSERVATION_POINTS.map((_point, i) => {
                 const Icon = ICONS[i];
                 return (
                   <li key={i} className="flex items-start gap-4">
                     <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-brand-green/20 flex items-center justify-center mt-0.5">
                       <Icon className="w-5 h-5 text-brand-green" aria-hidden="true" />
                     </span>
-                    <span className="text-white/85 leading-relaxed pt-2">{point.text}</span>
+                    <span className="text-white/85 leading-relaxed pt-2">{t(`conservation.${i}`)}</span>
                   </li>
                 );
               })}
@@ -335,6 +341,7 @@ function ConservationSection() {
 // ─── More Experiences Section ─────────────────────────────────────────────────
 function MoreExperiencesSection() {
   const { ref, isVisible } = useScrollReveal();
+  const { t } = useI18n();
 
   return (
     <section
@@ -346,16 +353,16 @@ function MoreExperiencesSection() {
         {/* Header */}
         <div className="text-center mb-14">
           <p className="text-brand-green font-semibold tracking-widest uppercase text-sm mb-3">
-            Complementa tu experiencia
+            {t('more.subtitle')}
           </p>
           <h2
             id="mas-experiencias-titulo"
             className="font-serif text-3xl sm:text-4xl text-brand-dark mb-4"
           >
-            Más experiencias en la naturaleza
+            {t('more.title')}
           </h2>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Durante tu visita también puedes disfrutar de otras experiencias que conectan con el territorio:
+            {t('more.description')}
           </p>
         </div>
 
@@ -368,7 +375,7 @@ function MoreExperiencesSection() {
               style={{ transitionDelay: `${i * 60}ms` }}
             >
               <div className="text-4xl mb-3">{exp.emoji}</div>
-              <h3 className="font-serif text-base text-brand-dark">{exp.title}</h3>
+              <h3 className="font-serif text-base text-brand-dark">{t(`more.${i}`)}</h3>
             </article>
           ))}
         </div>
@@ -380,47 +387,18 @@ function MoreExperiencesSection() {
 // ─── Reviews Section (carousel) ──────────────────────────────────────────────
 function ReviewsSection() {
   const { ref, isVisible } = useScrollReveal();
+  const { t } = useI18n();
   const [page, setPage] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const REVIEWS = [
-    {
-      text: 'El avistamiento de aves fue lo más especial del viaje. Vimos tucanes, tangaras y un carpintero increíble. El guía conocía cada especie por su canto.',
-      author: 'Observador · Bogotá',
-      stars: 5,
-      source: 'Booking',
-    },
-    {
-      text: 'Un paraíso para los amantes de la naturaleza. Más de 20 especies en una sola mañana. El bosque de niebla al amanecer es mágico.',
-      author: 'Pareja · Medellín',
-      stars: 5,
-      source: 'TripAdvisor',
-    },
-    {
-      text: 'No necesitas ser experto. Los guías te enseñan todo. Mis hijos quedaron fascinados con los colibríes. Una experiencia educativa y hermosa.',
-      author: 'Familia · Bogotá',
-      stars: 5,
-      source: 'Booking',
-    },
-    {
-      text: 'La combinación de café y aves es única. Primero el coffee tour, luego avistamiento al amanecer. No existe otro lugar así cerca de Bogotá.',
-      author: 'Viajero · Cali',
-      stars: 5,
-      source: 'TripAdvisor',
-    },
-    {
-      text: 'Vinimos por las aves y nos quedamos por todo lo demás. Las cabañas, el desayuno, el silencio del bosque. Ya estamos planeando volver.',
-      author: 'Pareja birders · USA',
-      stars: 5,
-      source: 'Booking',
-    },
-    {
-      text: 'Como fotógrafo de naturaleza, este lugar es un sueño. La biodiversidad es impresionante y los senderos están perfectamente cuidados.',
-      author: 'Fotógrafo · Bogotá',
-      stars: 5,
-      source: 'Booking',
-    },
+    { text: t('review.0.text'), author: t('review.0.author'), stars: 5, source: 'Booking' },
+    { text: t('review.1.text'), author: t('review.1.author'), stars: 5, source: 'TripAdvisor' },
+    { text: t('review.2.text'), author: t('review.2.author'), stars: 5, source: 'Booking' },
+    { text: t('review.3.text'), author: t('review.3.author'), stars: 5, source: 'TripAdvisor' },
+    { text: t('review.4.text'), author: t('review.4.author'), stars: 5, source: 'Booking' },
+    { text: t('review.5.text'), author: t('review.5.author'), stars: 5, source: 'Booking' },
   ];
 
   const perPage = typeof window !== 'undefined' && window.innerWidth < 640 ? 1 : 3;
@@ -448,13 +426,13 @@ function ReviewsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="text-brand-gold font-semibold tracking-widest uppercase text-sm mb-3">
-            Lo que dicen nuestros visitantes
+            {t('reviews.subtitle')}
           </p>
           <h2
             id="resenas-titulo"
             className="font-serif text-4xl sm:text-5xl text-white"
           >
-            Experiencias en la naturaleza
+            {t('reviews.title')}
           </h2>
           <div className="flex items-center justify-center gap-2 mt-4">
             <div className="flex gap-0.5">
@@ -533,11 +511,22 @@ function ReviewsSection() {
 // ─── FAQ Section ──────────────────────────────────────────────────────────────
 function FaqSection() {
   const { ref, isVisible } = useScrollReveal();
+  const { t } = useI18n();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggle = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
   };
+
+  // FAQ items driven by i18n keys
+  const FAQ_I18N_KEYS = [
+    { q: 'faq.q1', a: 'faq.a1' },
+    { q: 'faq.q2', a: 'faq.a2' },
+    { q: 'faq.q3', a: 'faq.a3' },
+    { q: 'faq.q4', a: 'faq.a4' },
+    { q: 'faq.q5', a: 'faq.a5' },
+    { q: 'faq.q6', a: 'faq.a6' },
+  ];
 
   return (
     <section
@@ -549,18 +538,18 @@ function FaqSection() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <p className="text-brand-green font-semibold tracking-widest uppercase text-sm mb-3">
-            Resolvemos tus dudas
+            {t('faq.subtitle')}
           </p>
           <h2
             id="faq-titulo"
             className="font-serif text-3xl sm:text-4xl text-brand-dark"
           >
-            Preguntas frecuentes
+            {t('faq.title')}
           </h2>
         </div>
 
         <div className="space-y-3">
-          {FAQ_ITEMS.map((item, index) => {
+          {FAQ_I18N_KEYS.map((keys, index) => {
             const isOpen = openIndex === index;
             return (
               <article key={index} className="bg-white rounded-2xl shadow-sm border border-brand-beige/50 overflow-hidden">
@@ -571,7 +560,7 @@ function FaqSection() {
                   aria-controls={`faq-answer-${index}`}
                 >
                   <span className="font-semibold text-brand-dark text-base pr-4">
-                    {item.question}
+                    {t(keys.q)}
                   </span>
                   <span className="flex-shrink-0 ml-auto text-brand-green">
                     {isOpen ? (
@@ -590,7 +579,7 @@ function FaqSection() {
                   }`}
                 >
                   <p className="px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t border-brand-beige/40 pt-4">
-                    {item.answer}
+                    {t(keys.a)}
                   </p>
                 </div>
               </article>
@@ -605,6 +594,7 @@ function FaqSection() {
 // ─── Location Section ─────────────────────────────────────────────────────────
 function LocationSection() {
   const { ref, isVisible } = useScrollReveal();
+  const { t } = useI18n();
 
   return (
     <section
@@ -616,13 +606,13 @@ function LocationSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="text-brand-green font-semibold tracking-widest uppercase text-sm mb-3">
-            Ubicación
+            {t('location.subtitle')}
           </p>
           <h2
             id="ubicacion-titulo"
             className="font-serif text-3xl sm:text-4xl text-brand-dark"
           >
-            Cerca de Bogotá. Inmerso en la naturaleza.
+            {t('location.title')}
           </h2>
         </div>
 
@@ -648,37 +638,27 @@ function LocationSection() {
                 <MapPin className="w-5 h-5 text-brand-gold" aria-hidden="true" />
               </div>
               <h3 className="font-serif text-xl">
-                ¿Cómo llegar?
+                {t('location.howto')}
               </h3>
             </div>
             <ul className="space-y-5">
               <li className="flex items-start gap-4">
                 <span className="text-2xl flex-shrink-0 leading-tight">🚗</span>
-                <span className="text-white/85 leading-relaxed">90 minutos en carro desde Bogotá</span>
+                <span className="text-white/85 leading-relaxed">{t('location.item.0')}</span>
               </li>
               <li className="flex items-start gap-4">
                 <span className="text-2xl flex-shrink-0 leading-tight">🛣️</span>
-                <span className="text-white/85 leading-relaxed">Ruta: Bogotá → Facatativá → Zipacón</span>
+                <span className="text-white/85 leading-relaxed">{t('location.item.1')}</span>
               </li>
               <li className="flex items-start gap-4">
                 <span className="text-2xl flex-shrink-0 leading-tight">🌤️</span>
-                <span className="text-white/85 leading-relaxed">Clima templado de montaña (18-24°C)</span>
+                <span className="text-white/85 leading-relaxed">{t('location.item.2')}</span>
               </li>
               <li className="flex items-start gap-4">
                 <span className="text-2xl flex-shrink-0 leading-tight">🌿</span>
-                <span className="text-white/85 leading-relaxed">1.800 metros sobre el nivel del mar</span>
+                <span className="text-white/85 leading-relaxed">{t('location.item.3')}</span>
               </li>
             </ul>
-
-            <div className="mt-8 bg-white/10 rounded-2xl p-4 border border-white/10">
-              <div className="flex items-center gap-2 mb-2">
-                <Clock className="w-4 h-4 text-brand-gold" aria-hidden="true" />
-                <span className="text-brand-gold text-sm font-semibold">Avistamiento al amanecer</span>
-              </div>
-              <p className="text-white/70 text-sm leading-relaxed">
-                Te recomendamos llegar el día anterior para estar listo al amanecer, cuando las aves están más activas.
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -690,6 +670,7 @@ function LocationSection() {
 function CtaFinal() {
   const { ref, isVisible } = useScrollReveal();
   const { trackWhatsAppClick, trackEmailClick } = useAnalytics();
+  const { t } = useI18n();
 
   return (
     <section
@@ -713,18 +694,18 @@ function CtaFinal() {
         {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-brand-green/25 border border-brand-green/50 text-brand-gold px-4 py-2 rounded-full text-sm font-medium tracking-wide mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
-          Bosque de niebla andino
+          {t('cta.badge')}
         </div>
 
         <h2
           id="cta-titulo"
           className="font-serif text-4xl sm:text-5xl text-white mb-5"
         >
-          Descubre la biodiversidad del bosque de niebla
+          {t('cta.title')}
         </h2>
 
         <p className="text-white/70 text-base sm:text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-          Vive una experiencia única de avistamiento de aves en La Palma &amp; El Tucán Hotel, donde la naturaleza, el café y la conservación se encuentran.
+          {t('cta.subtitle')}
         </p>
 
         {/* CTAs */}
@@ -735,14 +716,14 @@ function CtaFinal() {
             rel="noopener noreferrer"
             className="w-full sm:w-auto bg-brand-pink text-white px-10 py-5 rounded-full text-lg font-bold hover:bg-brand-pink/90 transition-all duration-200 hover:shadow-2xl hover:shadow-brand-pink/50 hover:-translate-y-1"
           >
-            Reservar Ahora
+            {t('cta.button')}
           </a>
           <a
             href={`mailto:${EMAIL}`}
             onClick={() => trackEmailClick('cta_final')}
             className="w-full sm:w-auto flex items-center justify-center border-2 border-white/40 text-white px-10 py-5 rounded-full text-lg font-bold hover:bg-white/10 transition-all duration-200 hover:-translate-y-1"
           >
-            Escribir por correo
+            {t('cta.email')}
           </a>
         </div>
         <a
@@ -752,12 +733,12 @@ function CtaFinal() {
           onClick={() => trackWhatsAppClick('cta_final')}
           className="text-white/60 hover:text-white text-sm underline underline-offset-4 transition-colors duration-200"
         >
-          ¿Preguntas? Escríbenos por WhatsApp
+          {t('cta.whatsapp')}
         </a>
 
         {/* Trust note */}
         <p className="text-white/50 text-sm">
-          Respuesta inmediata · Hablamos español · Confirmación al instante
+          {t('cta.trust')}
         </p>
       </div>
     </section>
@@ -767,6 +748,7 @@ function CtaFinal() {
 // ─── Footer ───────────────────────────────────────────────────────────────────
 function Footer() {
   const { trackWhatsAppClick, trackEmailClick } = useAnalytics();
+  const { t } = useI18n();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -777,18 +759,24 @@ function Footer() {
           <div>
             <Logo variant="light" size="lg" />
             <p className="text-white/50 text-sm mt-4 leading-relaxed max-w-xs">
-              Avistamiento de aves en bosque de niebla andino a 90 minutos de Bogotá.
-              150+ especies, guías expertos y cafetales regenerativos.
+              {t('footer.description')}
             </p>
           </div>
 
           {/* Links */}
           <div>
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-widest">
-              Navegación
+              {t('footer.enlaces')}
             </h3>
             <ul className="space-y-2">
-              {NAV_LINKS.map((link) => (
+              {NAV_LINKS.map((link) => {
+                const NAV_KEY_MAP: Record<string, string> = {
+                  '#experiencia': 'nav.experiencia',
+                  '#especies': 'nav.especies',
+                  '#conservacion': 'nav.conservacion',
+                  '#faq': 'nav.preguntas',
+                };
+                return (
                 <li key={link.href}>
                   <a
                     href={link.href}
@@ -799,17 +787,18 @@ function Footer() {
                     }}
                     className="text-white/50 hover:text-white text-sm transition-colors duration-200"
                   >
-                    {link.label}
+                    {t(NAV_KEY_MAP[link.href] ?? link.href)}
                   </a>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           </div>
 
           {/* Contact */}
           <div>
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-widest">
-              Contacto
+              {t('footer.contacto')}
             </h3>
             <ul className="space-y-3">
               <li>
@@ -837,7 +826,7 @@ function Footer() {
               </li>
               <li>
                 <span className="text-white/50 text-sm">
-                  Zipacón, Cundinamarca, Colombia
+                  {t('footer.location')}
                 </span>
               </li>
             </ul>
@@ -847,7 +836,7 @@ function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/30 text-xs">
-            &copy; {currentYear} La Palma &amp; El Tucán. Todos los derechos reservados.
+            &copy; {currentYear} La Palma &amp; El Tucán. {t('footer.derechos')}
           </p>
           <p className="text-white/20 text-xs">
             Avistamiento de aves cerca de Bogotá · Birdwatching Colombia · Bosque de niebla

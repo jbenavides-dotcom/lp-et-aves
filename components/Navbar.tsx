@@ -1,11 +1,22 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
+import LangToggle from './LangToggle';
 import { NAV_LINKS, CLOUDBEDS_URL } from '../constants';
+import { useI18n } from '../i18n';
+
+// Map from href to i18n key
+const NAV_KEY_MAP: Record<string, string> = {
+  '#experiencia': 'nav.experiencia',
+  '#especies': 'nav.especies',
+  '#conservacion': 'nav.conservacion',
+  '#faq': 'nav.preguntas',
+};
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { t } = useI18n();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -66,16 +77,17 @@ export default function Navbar() {
               }}
               className="text-white/80 hover:text-white text-sm font-medium tracking-wide transition-colors duration-200"
             >
-              {link.label}
+              {t(NAV_KEY_MAP[link.href] ?? link.href)}
             </a>
           ))}
+          <LangToggle />
           <a
             href={CLOUDBEDS_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-brand-pink text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-brand-pink/90 transition-all duration-200 hover:shadow-lg hover:shadow-brand-pink/30 hover:-translate-y-0.5"
           >
-            Reservar Ahora
+            {t('nav.reservar')}
           </a>
         </nav>
 
@@ -115,9 +127,10 @@ export default function Navbar() {
               }}
               className="text-white text-2xl font-medium font-serif hover:text-brand-gold transition-colors duration-200"
             >
-              {link.label}
+              {t(NAV_KEY_MAP[link.href] ?? link.href)}
             </a>
           ))}
+          <LangToggle />
           <a
             href={CLOUDBEDS_URL}
             target="_blank"
@@ -125,7 +138,7 @@ export default function Navbar() {
             onClick={() => setMenuOpen(false)}
             className="bg-brand-pink text-white px-8 py-3.5 rounded-full text-lg font-semibold hover:bg-brand-pink/90 transition-all duration-200 mt-4"
           >
-            Reservar Ahora
+            {t('nav.reservar')}
           </a>
         </nav>
       </div>

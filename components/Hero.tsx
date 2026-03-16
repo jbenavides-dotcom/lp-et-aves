@@ -1,14 +1,16 @@
 import { ChevronDown } from 'lucide-react';
 import { ASSETS, CLOUDBEDS_URL } from '../constants';
+import { useI18n } from '../i18n';
 
-const TRUST_CHIPS = [
-  'Bosque de niebla',
-  '150+ especies',
-  'Guías expertos',
-  'Coffee Tour incluido',
+const TRUST_CHIP_KEYS = [
+  'hero.chip.bosque',
+  'hero.chip.especies',
+  'hero.chip.guias',
 ];
 
 export default function Hero() {
+  const { t } = useI18n();
+
   const handleScrollDown = () => {
     const next = document.querySelector('#por-que');
     if (next) next.scrollIntoView({ behavior: 'smooth' });
@@ -36,30 +38,30 @@ export default function Hero() {
         {/* Location badge */}
         <div className="inline-flex items-center gap-2 bg-brand-green/25 border border-brand-green/50 text-brand-gold px-4 py-2 rounded-full text-sm font-medium tracking-widest uppercase mb-8 backdrop-blur-sm">
           <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
-          Bosque de Niebla · Zipacón, Cundinamarca
+          {t('hero.badge')}
         </div>
 
         {/* H1 */}
         <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-4">
-          Avistamiento de aves en{' '}
-          <span className="text-brand-gold italic">La Palma y el Tucán</span>
+          {t('hero.title.pre')}{' '}
+          <span className="text-brand-gold italic">{t('hero.title.highlight')}</span>
         </h1>
 
         {/* Subtitle */}
         <p className="text-white/85 text-base sm:text-lg max-w-2xl mx-auto mb-4 leading-relaxed">
-          Un refugio natural para descubrir la extraordinaria diversidad de aves de los Andes colombianos.
+          {t('hero.subtitle')}
         </p>
 
         {/* Description */}
         <p className="text-white/65 text-sm sm:text-base max-w-2xl mx-auto mb-8 leading-relaxed">
-          En La Palma &amp; El Tucán Hotel, el bosque de niebla, los cafetales regenerativos y la biodiversidad que nos rodea crean el escenario perfecto para observar aves en su hábitat natural. Ubicados a solo 90 minutos de Bogotá, nuestro ecosistema alberga numerosas especies residentes y migratorias.
+          {t('hero.description')}
         </p>
 
         {/* Trust chips */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {TRUST_CHIPS.map((chip) => (
+          {TRUST_CHIP_KEYS.map((key) => (
             <span
-              key={chip}
+              key={key}
               className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 px-4 py-1.5 rounded-full text-sm font-medium"
             >
               <svg
@@ -76,7 +78,7 @@ export default function Hero() {
                   strokeLinejoin="round"
                 />
               </svg>
-              {chip}
+              {t(key)}
             </span>
           ))}
         </div>
@@ -89,7 +91,7 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="w-full sm:w-auto bg-brand-pink text-white px-8 py-4 rounded-full text-base font-bold hover:bg-brand-pink/90 transition-all duration-200 hover:shadow-xl hover:shadow-brand-pink/40 hover:-translate-y-1 text-center"
           >
-            Reservar Ahora
+            {t('hero.cta.reservar')}
           </a>
           <a
             href="#especies"
@@ -100,7 +102,7 @@ export default function Hero() {
             }}
             className="w-full sm:w-auto flex items-center justify-center border-2 border-white/40 text-white px-8 py-4 rounded-full text-base font-bold hover:bg-white/10 transition-all duration-200 hover:-translate-y-1"
           >
-            Ver especies
+            {t('hero.cta.especies')}
           </a>
         </div>
       </div>
